@@ -18,17 +18,13 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: reporting_app
+    ports:
+      - "8000:8000"
     depends_on:
       - postgres
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USER: user
-      DB_PASSWORD: password
-      DB_NAME: mydb
     networks:
       - postgres-network
-    command: [ "--config", "/config.yaml" ]
+
 
 volumes:
   pg_data:

@@ -1,9 +1,11 @@
+app:
+  jwt_token: "4as7fajksdh127836^&%asd8"
 log:
   level: "debug"
   format: "text"
 
 database:
-  host: "localhost"
+  host: "postgres"
   port: 5432
   user: "user"
   password: "password"
