@@ -8,8 +8,7 @@ import (
 
 type Config struct {
 	App struct {
-		Name string
-		Env  string
+		JWTToken string
 	}
 	Log struct {
 		Level  string
@@ -27,9 +26,13 @@ type Config struct {
 var AppConfig Config
 
 func LoadConfig() {
+
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
+
+	viper.AddConfigPath("/")
 	viper.AddConfigPath(".")
+
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {

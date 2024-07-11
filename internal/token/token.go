@@ -2,10 +2,11 @@ package token
 
 import (
 	"github.com/dgrijalva/jwt-go"
+	"report_hn/internal/config"
 	"time"
 )
 
-var secretKey = []byte("aydinabedinia123456")
+var secretKey = []byte(config.AppConfig.App.JWTToken)
 
 func MakeToken(id uint) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
