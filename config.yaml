@@ -1,5 +1,6 @@
 app:
-  jwt_token: "4as7fajksdh127836^&%asd8"
+  token: "4as7fajksdh127836^&%asd8"
+
 log:
   level: "debug"
   format: "text"

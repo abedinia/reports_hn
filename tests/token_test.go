@@ -7,8 +7,6 @@ import (
 	"time"
 )
 
-var secretKey = []byte("aydinabedinia123456")
-
 func TestMakeToken(t *testing.T) {
 	id := uint(12345)
 
@@ -21,7 +19,7 @@ func TestMakeToken(t *testing.T) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, jwt.NewValidationError("unexpected signing method", jwt.ValidationErrorSignatureInvalid)
 		}
-		return secretKey, nil
+		return jwt_token.SecretKey, nil
 	})
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
@@ -53,7 +51,7 @@ func TestDecodeToken_ExpiredToken(t *testing.T) {
 		"user_id": id,
 		"exp":     expiredTime,
 	})
-	tokenString, err := token.SignedString(secretKey)
+	tokenString, err := token.SignedString(jwt_token.SecretKey)
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
 	}

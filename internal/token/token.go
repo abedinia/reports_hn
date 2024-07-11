@@ -6,14 +6,15 @@ import (
 	"time"
 )
 
-var secretKey = []byte(config.AppConfig.App.JWTToken)
+var SecretKey = []byte(config.AppConfig.App.Token)
 
 func MakeToken(id uint) (string, error) {
+
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id": id,
 		"exp":     time.Now().Add(time.Hour * 72).Unix(),
 	})
-	tokenString, err := token.SignedString(secretKey)
+	tokenString, err := token.SignedString(SecretKey)
 
 	return tokenString, err
 }
@@ -23,7 +24,7 @@ func DecodeToken(tokenString string) (uint, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, jwt.NewValidationError("unexpected signing method", jwt.ValidationErrorSignatureInvalid)
 		}
-		return secretKey, nil
+		return SecretKey, nil
 	})
 
 	if err != nil {
