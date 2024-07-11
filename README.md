@@ -40,16 +40,22 @@ This project is a Go-based API to collect and manage customer reports containing
 To start the application, run:
 
 ```bash
-go run cmd/main.go report
+go run main.go report
 ```
 
 ```bash
-go run cmd/main.go migrate
+go run main.go migrate
 ```
 
 ### Seed
 ```bash
-go run cmd/main.go seed
+go run main.go seed
+```
+
+### for migrate and seed
+```bash
+docker-compose exec reporting_app /report_hn migrate
+docker-compose exec reporting_app /report_hn seed
 ```
 
 ### Login
